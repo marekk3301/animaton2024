@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-time Cloud Animation</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    #controls {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        z-index: 5;
+    }
+    label {
+        color: white;
+    }
+    canvas {
+      display: block;
+      z-index: 3;
+      /* filter: invert(); */
+    }
+
+    #moving-object {
+        width: 110px;
+        height: 110px;
+        z-index: 10;
+    }
+  </style>
+</head>
+<body>
+    <div id="controls">
+        <label for="width">Width:</label>
+        <input type="number" id="width" value="2324">
+        
+        <label for="height">Height:</label>
+        <input type="number" id="height" value="1757">
+        
+        <label for="scale">Scale:</label>
+        <input type="number" id="scale" step="10" value="150.0">
+        
+        <label for="speed">Speed:</label>
+        <input type="number" id="speed" step="0.01" value="0.05">
+        
+        <label for="brightnessMin">Brightness Min:</label>
+        <input type="number" id="brightnessMin" value="170" min="0" max="255">
+        
+        <label for="brightnessMax">Brightness Max:</label>
+        <input type="number" id="brightnessMax" value="250" min="0" max="255">
+
+        <br>
+        <button id="sunnyPreset">Sunny🌞</button>
+        <button id="cloudyPreset">Cloudy🌤️</button>
+        <button id="stormPreset">Storm🌩️</button>
+    </div>
+
+    
+    <div id="moving-object"><img src="plane.svg"></div>
+    <canvas id="cloudCanvas">
+    </canvas>
+    <script src="https://cdn.jsdelivr.net/npm/noisejs@2.1.0/index.min.js"></script>
+    <script src="clouds.js"></script>
+    <script src="plane.js"></script>
+</body>
+</html>
