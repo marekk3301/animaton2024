@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GdańskAR</title>
+    <style>
+        .content img:nth-child(1) {
+            top: 10px;
+            left: 10px;
+        }
+        .content img:nth-child(2) {
+            top: 10px;
+            right: 10px;
+        }
+        .content img:nth-child(3) {
+            bottom: 10px;
+            left: 10px;
+        }
+        .content img:nth-child(4) {
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        img {
+            position: absolute;
+            height: 25px;
+            width: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <img id="1" src="aruco/4x4_1000-4.svg">
+        <img id="2" src="aruco/4x4_1000-7.svg">
+        <img id="3" src="aruco/4x4_1000-9.svg">
+        <img id="4" src="aruco/4x4_1000-14.svg">
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gdańsk w ruchu</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+  <a-scene embedded arjs>
+    <!-- Załadowanie zasobów -->
+    <a-assets>
+      <a-asset-item id="wiking" src="wiking.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- url to nazwwa tego markera ktory obowiazuje tu -->
+    <!-- a-marker preset="custom" type="pattern" url="marker.patt"-->
+    <a-marker preset="custom" type="pattern" url="pattern-samolot-cien.patt">
+      <!-- Dodaj model 3D jako domyślną zawartość -->
+      <a-entity id="content" gltf-model="#wiking" scale="0.5 0.5 0.5" animation-mixer></a-entity>
+      
+      <!-- Dodaj komponent text dla napisu -->
+      <a-entity id="label" visible="false" text="value: Kliknij, aby wyświetlić tekst; align: center; width: 6;"></a-entity>
+    </a-marker>
+    
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <script>
+    // Dodajemy obsługę kliknięcia na markerze
+    AFRAME.registerComponent('markerhandler', {
+      init: function () {
+        var marker = this.el;  // Zapisujemy referencję do markeru
+        var content = document.querySelector('#content');
+        var label = document.querySelector('#label');
+
+        // Nasłuchujemy zdarzenia 'click' na markerze
+        marker.addEventListener('click', function () {
+          // Zmieniamy zawartość elementu marker po kliknięciu
+          content.setAttribute('visible', 'false');
+          label.setAttribute('visible', 'true');
+        });
+      }
+    });
+
+    // Przypisujemy komponent do marker-a
+    document.querySelector('a-marker').setAttribute('markerhandler', '');
+  </script>
+</body>
+</html>
