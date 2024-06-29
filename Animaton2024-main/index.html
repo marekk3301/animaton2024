@@ -9,17 +9,27 @@
   <a-scene embedded arjs>
     <!-- Załadowanie zasobów -->
     <a-assets>
-      <a-asset-item id="wiking" src="wiking.glb"></a-asset-item>
+      <!-- If you want to include any assets, do it here -->
     </a-assets>
 
-    <!-- url to nazwwa tego markera ktory obowiazuje tu -->
-    <!-- a-marker preset="custom" type="pattern" url="marker.patt"-->
-    <a-marker preset="custom" type="pattern" url="pattern-samolot-cien.patt">
-      <!-- Dodaj model 3D jako domyślną zawartość -->
-      <a-entity id="content" gltf-model="#wiking" scale="0.5 0.5 0.5" animation-mixer></a-entity>
-      
-      <!-- Dodaj komponent text dla napisu -->
-      <a-entity id="label" visible="false" text="value: Kliknij, aby wyświetlić tekst; align: center; width: 6;"></a-entity>
+    <!-- Marker 1 -->
+    <a-marker preset="custom" type="pattern" url="pattern4.patt" id="marker1">
+      <a-entity id="axis1" scale="0.5 0.5 0.5" axes-helper></a-entity>
+    </a-marker>
+    
+    <!-- Marker 2 -->
+    <a-marker preset="custom" type="pattern" url="pattern7.patt" id="marker2">
+      <a-entity id="axis2" scale="0.5 0.5 0.5" axes-helper></a-entity>
+    </a-marker>
+    
+    <!-- Marker 3 -->
+    <a-marker preset="custom" type="pattern" url="pattern9.patt" id="marker3">
+      <a-entity id="axis3" scale="0.5 0.5 0.5" axes-helper></a-entity>
+    </a-marker>
+    
+    <!-- Marker 4 -->
+    <a-marker preset="custom" type="pattern" url="pattern14.patt" id="marker4">
+      <a-entity id="axis4" scale="0.5 0.5 0.5" axes-helper></a-entity>
     </a-marker>
     
     <a-entity camera></a-entity>
@@ -30,20 +40,20 @@
     AFRAME.registerComponent('markerhandler', {
       init: function () {
         var marker = this.el;  // Zapisujemy referencję do markeru
-        var content = document.querySelector('#content');
-        var label = document.querySelector('#label');
+        var axisId = '#axis' + marker.getAttribute('id').slice(-1);
+        var axis = document.querySelector(axisId);
 
         // Nasłuchujemy zdarzenia 'click' na markerze
         marker.addEventListener('click', function () {
-          // Zmieniamy zawartość elementu marker po kliknięciu
-          content.setAttribute('visible', 'false');
-          label.setAttribute('visible', 'true');
+          // You can add any interaction logic here if needed
         });
       }
     });
 
-    // Przypisujemy komponent do marker-a
-    document.querySelector('a-marker').setAttribute('markerhandler', '');
+    // Przypisujemy komponent do wszystkich markerów
+    document.querySelectorAll('a-marker').forEach(function(marker) {
+      marker.setAttribute('markerhandler', '');
+    });
   </script>
 </body>
 </html>
