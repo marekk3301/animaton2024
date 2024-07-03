@@ -20,6 +20,7 @@
         flex-direction: column;
         width: fit-content;
         z-index: 5;
+        display: none;
     }
     label {
         color: white;
@@ -31,8 +32,9 @@
     }
 
     #moving-object {
-        width: 110px;
-        height: 110px;
+        width: 150px;
+        height: 150px;
+        opacity: 0.8;
         z-index: 10;
     }
   </style>
@@ -43,7 +45,7 @@
         <input type="number" id="width" value="2324">
         
         <label for="height">Height:</label>
-        <input type="number" id="height" value="1757">
+        <input type="number" id="height" value="2257">
         
         <label for="scale">Scale:</label>
         <input type="number" id="scale" step="10" value="150.0">
@@ -68,7 +70,7 @@
     <canvas id="cloudCanvas">
     </canvas>
     <script src="https://cdn.jsdelivr.net/npm/noisejs@2.1.0/index.min.js"></script>
-    <script src="clouds.js"></script>
+    <script src="cloudsV2.js"></script>
     <script src="plane.js"></script>
 </body>
 </html>
